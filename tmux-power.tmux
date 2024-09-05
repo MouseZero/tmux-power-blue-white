@@ -80,6 +80,7 @@ G09=#585858 #240
 G10=#626262 #241
 G11=#6c6c6c #242
 G12=#767676 #243
+W00=#ffffff
 
 FG="$G10"
 BG="$G04"
@@ -107,11 +108,11 @@ tmux_set status-left-bg "$G04"
 tmux_set status-left-fg "$G12"
 tmux_set status-left-length 150
 user=$(whoami)
-LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$G06,nobold]$rarrow#[fg=$TC,bg=$G06] $session_icon #S "
+LS="#[fg=$G04,bg=$TC,bold] $user_icon $user@#h #[fg=$TC,bg=$W00,nobold]$rarrow#[fg=$G04,bg=$W00] $session_icon #S "
 if "$show_upload_speed"; then
-    LS="$LS#[fg=$G06,bg=$G05]$rarrow#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$rarrow"
+    LS="$LS#[fg=$W00,bg=$G05]$rarrow#[fg=$TC,bg=$G05] $upload_speed_icon #{upload_speed} #[fg=$G05,bg=$BG]$rarrow"
 else
-    LS="$LS#[fg=$G06,bg=$BG]$rarrow"
+    LS="$LS#[fg=$W00,bg=$BG]$rarrow"
 fi
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
     LS="$LS#{prefix_highlight}"
@@ -122,7 +123,7 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg "$BG"
 tmux_set status-right-fg "$G12"
 tmux_set status-right-length 150
-RS="#[fg=$G06]$larrow#[fg=$TC,bg=$G06] $time_icon $time_format #[fg=$TC,bg=$G06]$larrow#[fg=$G04,bg=$TC] $date_icon $date_format "
+RS="#[fg=$W00]$larrow#[fg=$G06,bg=$W00] $time_icon $time_format #[fg=$TC,bg=$W00]$larrow#[fg=$G04,bg=$TC] $date_icon $date_format "
 if "$show_download_speed"; then
     RS="#[fg=$G05,bg=$BG]$larrow#[fg=$TC,bg=$G05] $download_speed_icon #{download_speed} $RS"
 fi
@@ -136,7 +137,7 @@ tmux_set status-right "$RS"
 
 # Window status format
 tmux_set window-status-format         "#[fg=$BG,bg=$G06]$rarrow#[fg=$TC,bg=$G06] #I:#W#F #[fg=$G06,bg=$BG]$rarrow"
-tmux_set window-status-current-format "#[fg=$BG,bg=$TC]$rarrow#[fg=$BG,bg=$TC,bold] #I:#W#F #[fg=$TC,bg=$BG,nobold]$rarrow"
+tmux_set window-status-current-format "#[fg=$BG,bg=$W00]$rarrow#[fg=$BG,bg=$W00,bold] #I:#W#F #[fg=$W00,bg=$BG,nobold]$rarrow"
 
 # Window status style
 tmux_set window-status-style          "fg=$TC,bg=$BG,none"
@@ -147,10 +148,10 @@ tmux_set window-status-activity-style "fg=$TC,bg=$BG,bold"
 tmux_set window-status-separator ""
 
 # Pane border
-tmux_set pane-border-style "fg=$G07,bg=default"
+tmux_set pane-border-style "fg=$G07"
 
 # Active pane border
-tmux_set pane-active-border-style "fg=$TC,bg=default"
+tmux_set pane-active-border-style "fg=$TC"
 
 # Pane number indicator
 tmux_set display-panes-colour "$G07"
